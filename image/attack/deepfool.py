@@ -4,9 +4,9 @@ import torch as torch
 import copy
 from torch.autograd.gradcheck import zero_gradients
 
-import attack.base_attack as ba
+from DeepRobust.image.attack.base_attack import BaseAttack
 
-class DeepFool(ba.BaseAttack):
+class DeepFool(BaseAttack):
     def __init__(self, model, device = 'cuda' ):
         super(DeepFool, self).__init__(model, device)
 
@@ -41,7 +41,6 @@ class DeepFool(ba.BaseAttack):
         return True
 
 def deepfool(net, image, num_classes, overshoot, max_iter, is_cuda):
-
     """
        :param image: Image of size HxWx3
        :param net: network (input: images, output: values of activation **BEFORE** softmax).
